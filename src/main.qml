@@ -5,6 +5,8 @@ import QtQuick.Layouts 1.12
 import org.kde.kirigami 2.7 as Kirigami
 
 import org.mauikit.controls 1.3 as Maui
+import org.mauikit.filebrowsing 1.3 as FB
+
 import org.maui.mash 1.0 as Mash
 
 Maui.ApplicationWindow
@@ -27,8 +29,34 @@ Maui.ApplicationWindow
     {
         onClicked: {
             console.log(hash.computeHash(_textField.text, Mash.Hash.Md5))
+                    _dialogLoader.sourceComponent = _openFileDialogComponent
+                    dialog.singleSelection = true
+        dialog.callback = function(paths)
+        {
+            console.log("Paths", paths)
+            const url = paths[0]
+        }
+
+
+            dialog.open()
         }
     }
+    Component
+    {
+        id: _openFileDialogComponent
+
+        FB.FileDialog
+        {
+
+        }
+    }
+   Loader
+    {
+        id: _dialogLoader
+    }
+
+
+    property alias dialog : _dialogLoader.item
 
     Maui.TextField
     {

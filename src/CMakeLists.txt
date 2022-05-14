@@ -32,7 +32,7 @@ else()
     target_link_libraries(${PROJECT_NAME} MauiKit Qt5::Widgets )
 endif()
 
-target_link_libraries(${PROJECT_NAME} MauiKit Qt5::Quick Qt5::Core KF5::CoreAddons KF5::I18n)
+target_link_libraries(${PROJECT_NAME} MauiKit MauiKit::FileBrowsing Qt5::Quick Qt5::Core KF5::CoreAddons KF5::I18n)
 
 install(TARGETS ${PROJECT_NAME} ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 
