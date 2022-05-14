@@ -1,10 +1,11 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.12
+
 import org.kde.kirigami 2.7 as Kirigami
 
 import org.mauikit.controls 1.3 as Maui
-// import org.maui.mash 1.0 as Mash
+import org.maui.mash 1.0 as Mash
 
 Maui.ApplicationWindow
 {
@@ -15,11 +16,23 @@ Maui.ApplicationWindow
     title: qsTr("Mash")
     readonly property font defaultFont : Qt.font({family: "Noto Sans Mono", pointSize: Maui.Style.fontSizes.huge})
 
-    headBar.visible: true
+    headBar.visible: false
 
-    Maui.LabelDelegate
+    Mash.Hash
     {
-        id: b
-        text: "halooo"
+        id: hash
+    }
+
+    Maui.FloatingButton
+    {
+        onClicked: {
+            console.log(hash.computeHash(_textField.text, Mash.Hash.Md5))
+        }
+    }
+
+    Maui.TextField
+    {
+        id: _textField
+        anchors.centerIn: parent
     }
 }

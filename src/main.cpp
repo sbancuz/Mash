@@ -20,7 +20,7 @@
 #include <KI18n/KLocalizedString>
 
 #include "../build/mash_version.h"
-
+#include "./controllers/hash.h"
 #define MASH_URI "org.maui.mash"
 
 Q_DECL_EXPORT int main(int argc, char *argv[])
@@ -66,6 +66,8 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
         }, Qt::QueuedConnection);
 
         engine.rootContext()->setContextObject(new KLocalizedContext(&engine));
+
+        qmlRegisterType<Hash>(MASH_URI, 1, 0, "Hash");
 
     engine.load(url);
 
