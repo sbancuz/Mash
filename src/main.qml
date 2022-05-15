@@ -28,16 +28,15 @@ Maui.ApplicationWindow
     Maui.FloatingButton
     {
         onClicked: {
-            console.log(hash.computeHash(_textField.text, Mash.Hash.Md5))
-                    _dialogLoader.sourceComponent = _openFileDialogComponent
-                    dialog.singleSelection = true
-        dialog.callback = function(paths)
-        {
-            console.log("Paths", paths)
-            const url = paths[0]
-        }
-
-
+            _dialogLoader.sourceComponent = _openFileDialogComponent
+            dialog.singleSelection = true
+            dialog.callback = function(paths)
+            {
+                // Remove "file:://"
+                // TO-DO fix this file path problem so you can use different "sources" to open file
+                const url = paths[0].substr(7)
+                _textField.text = hash.computeFileHash(url, Mash.Hash.Md5)
+            }
             dialog.open()
         }
     }
